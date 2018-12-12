@@ -41,11 +41,12 @@ void makeChildren( Node *parent ) {
 //recursively makeChildren for any leaf node
 
 void growTree( Node *head ){
-    if( node->child[0] == NULL )
-        makeChildren(*head);
+    if( head->child[0] == NULL )
+        makeChildren(head);
     else {
-        for ( i=0; i<4; ++i ) {
-            growTree( node->child[i] );
+        for ( int i=0; i<4; ++i ) {
+            growTree( head->child[i] );
+        }
     }
 }
 //recursively destroy the whole tree
