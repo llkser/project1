@@ -41,10 +41,11 @@ void makeChildren( Node *parent ) {
 //recursively makeChildren for any leaf node
 
 void growTree( Node *head ){
-    if( head->child[0] == NULL )
+    int i;
+    if( head->child[0] == NULL&&head->child[1] == NULL&&head->child[2] == NULL&&head->child[3] == NULL )
         makeChildren(head);
     else {
-        for ( int i=0; i<4; ++i ) {
+        for ( i=0; i<4; ++i ) {
             growTree( head->child[i] );
         }
     }
@@ -52,10 +53,11 @@ void growTree( Node *head ){
 //recursively destroy the whole tree
 
 void destroyTree( Node *head ){
+    int i;
     if( head->child[0] == NULL&&head->child[1] == NULL&&head->child[2] == NULL&&head->child[3] == NULL )
         free(head);
     else {
-        for ( int i=0; i<4; ++i )
+        for ( i=0; i<4; ++i )
             destroyTree( head->child[i] );
         free(head);
     }
@@ -63,7 +65,8 @@ void destroyTree( Node *head ){
 //remove children from a node
 
 void removeChildren( Node *parent ){
-    for ( int i=0; i<4; ++i ) {
+    int i;
+    for ( i=0; i<4; ++i ) {
         free( parent->child[i] );
         parent->child[i]=NULL;
     }
