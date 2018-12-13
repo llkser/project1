@@ -4,7 +4,9 @@
 #include "buildTree.h"
 #include "writeTree.h"
 #include "treeStructure.h"
-
+#include "nodeValue.h"
+// count of how many nodes are added and how many are removed during task3_stage 2
+int nodeAdded,nodeRemoved;
 // main
 
 int main( int argc, char **argv ) {
@@ -13,13 +15,20 @@ int main( int argc, char **argv ) {
 
   // make the head node
   head = makeNode( 0.0,0.0, 0 );
+  nodeAdded=nodeRemoved=0;
 
   // make a tree
-  makeChildren( head );
-  makeChildren( head->child[1] );
+  growTree(head);
+  growTree(head);
+  growTree(head);
+  SetnodeValue(head);
+  changeTree(head);
 
   // print the tree for Gnuplot
-	writeTree( head );
+  writeTree( head );
+
+  //free the whole tree
+  destroyTree(head);
 
   return 0;
 }
