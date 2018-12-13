@@ -20,7 +20,6 @@ Node *makeNode( double x, double y, int level ) {
 
   return node;
 }
-
 // split a leaf nodes into 4 children
 
 void makeChildren( Node *parent ) {
@@ -39,17 +38,27 @@ void makeChildren( Node *parent ) {
 
   return;
 }
+//recursively makeChildren for any leaf node
 
+void growTree( Node *head ){
+    if( head->child[0] == NULL )
+        makeChildren(head);
+    else {
+        for ( int i=0; i<4; ++i ) {
+            growTree( head->child[i] );
+        }
+    }
+}
 //recursively destroy the whole tree
 
 void destroyTree( Node *head ){
-    if( head->child[0] == NULL )
+    if( head->child[0] == NULL&&head->child[1] == NULL&&head->child[2] == NULL&&head->child[3] == NULL )
         free(head);
     else {
-        for ( int i=0; i<4; ++i ) {
+        for ( int i=0; i<4; ++i )
             destroyTree( head->child[i] );
+        free(head);
     }
-}
 }
 //remove children from a node
 
