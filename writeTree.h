@@ -1,4 +1,5 @@
 #include "treeStructure.h"
+#include "stdio.h"
 //functions that write out the tree nodes
 
 void writeTree( Node *head );
